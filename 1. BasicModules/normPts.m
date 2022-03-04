@@ -3,7 +3,7 @@ function [ x, T] = normPts( x, m, s )
 %   Note. Transformation is done in homogeneous coordinate
 %   Note. k should be less than 3
 %   x : n x k vector (n is number of elements, k is dimension in inhomogeneous coordinate)
-%   mu : scalar which represents target center of normalization
+%   m : scalar which represents target center of normalization
 %   s : scalar which represents average scale of normalization
 n = size(x,1);
 k = size(x,2);

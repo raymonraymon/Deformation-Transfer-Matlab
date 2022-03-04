@@ -1,3 +1,5 @@
+clear
+clc
 close all;
 
 addpath('./1. BasicModules/kd_tree');

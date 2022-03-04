@@ -3,7 +3,9 @@ function [ R, t, s, res ] = similarity_fitting( A, B )
 % First initial alignment step is follows
 % O. Sorkine, "Least-Squares Rigid Motion Using SVD", 2016
 % wi in this case, are set to be 1
-
+% output 
+% s covariance matrix
+% res error
 if nargin ~= 2
     error('Missing parameters');
 end
@@ -53,8 +55,7 @@ b0(5:7) = t';
 b0(8) = s;
 % b0(8:10) = s;
 
-options = optimoptions('lsqnonlin','MaxFunctionEvaluations', 100000);
-options.Algorithm = 'levenberg-marquardt';
+options = optimoptions('lsqnonlin', 'Algorithm','levenberg-marquardt');
 [b, res, resi] = lsqnonlin(@(b) resSimXform( b,double(A),double(B) ),(double(b0)),[],[],options);
 % [-Inf -Inf -Inf -Inf -Inf -Inf 0],[Inf Inf Inf Inf Inf Inf Inf]
 n = size(A,2);

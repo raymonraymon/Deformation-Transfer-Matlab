@@ -1,4 +1,4 @@
-function [M C] = build_phase1(Adj_idx, E, FS4, VT4, ws, wi, marker)
+function [M, C] = build_phase1(Adj_idx, E, FS4, VT4, ws, wi, marker)
 % Create Sparse matrix M and vector C for phase 1 optimization.
 %   Input arguments
 %       Adj_idx : # of triangle x 3 matrix ( 3-connectivity )

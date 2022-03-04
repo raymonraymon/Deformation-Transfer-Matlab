@@ -1,4 +1,4 @@
-function [ x nx ] = deformation_transfer( VS, FS, VT, FT, VS2, FS2, corres )
+function [ x, nx ] = deformation_transfer( VS, FS, VT, FT, VS2, FS2, corres )
 %Implementation of Deformation transfer
 %   
 %   자세한 설명 위치
@@ -10,24 +10,28 @@ SD = cell(lenFS, 1);
 %%  Visualize
 fprintf('Visualize input meshes \n');
 set(gcf, 'Renderer', 'opengl');
-figure; title('Source mesh');
+figure;set(gcf,'unit','centimeters','position',[35,15,7,5]);
+
 trimesh(FS, VS(:, 1), VS(:, 2), VS(:, 3), ...
      'EdgeColor', 'none', 'FaceColor', [1 1 1], 'FaceLighting', 'phong');
 light('Position',[0 0 1],'Style','infinite');
-figure; title('Source deformed');
+title('Source mesh');
+figure; set(gcf,'unit','centimeters','position',[42,15,7,5]);
+
 trimesh(FS2, VS2(:, 1), VS2(:, 2), VS2(:, 3), ...
      'EdgeColor', 'none', 'FaceColor', [1 1 1], 'FaceLighting', 'phong');
 light('Position',[0 0 1],'Style','infinite');
-figure; title('Target mesh');
+title('Source deformed');
+figure; set(gcf,'unit','centimeters','position',[0,7,7,5]);
 trimesh(FT, VT(:, 1), VT(:, 2), VT(:, 3), ...
     'EdgeColor', 'none', 'FaceColor', [0.5 1 0.5], 'FaceLighting', 'phong');
 light('Position',[0 0 1],'Style','infinite');
-
+title('Target mesh');
 
 %%
-[TS NS VS4 FS4]= v4_normal(VS, FS);
-[TS2 NS2 VS42 FS42] = v4_normal(VS2, FS2);
-[TT NT VT4 FT4] = v4_normal(VT, FT);
+[TS, NS, VS4, FS4]= v4_normal(VS, FS);
+[TS2, NS2, VS42, FS42] = v4_normal(VS2, FS2);
+[TT, NT, VT4, FT4] = v4_normal(VT, FT);
 clear NS N2 NT;
 for i=1:lenFS
     SD{i} = TS2{i} / TS{i};
@@ -87,14 +91,14 @@ x = (M'*M)\(M'*C);
 x = reshape(x, [3 length(x)/3])';
 x = x(1:length(VT), :);
 fprintf('Finsiehd\n');
-[temp nx] = v4_normal(x, FT);
+[temp, nx] = v4_normal(x, FT);
 clear temp;
 
-figure;
+figure;set(gcf,'unit','centimeters','position',[7,7,7,5]);
 trimesh(FT, x(:, 1), x(:, 2), x(:, 3), ...
 'EdgeColor', 'none', 'FaceColor', [0 1 1], 'FaceLighting', 'phong');
 light('Position',[0 0 1],'Style','infinite');
-
+title('Target deformed mesh');
 end
 %%  W.r.t. source triangle
 

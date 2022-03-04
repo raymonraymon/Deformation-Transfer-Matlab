@@ -1,4 +1,4 @@
-function [T N V F] = v4_normal(Vert, Face)
+function [T, N, V, F] = v4_normal(Vert, Face)
 %Convert 3 vertices representation to 4 vertices with representation of
 %normal, 
 %   input
@@ -30,5 +30,6 @@ for i = 1:size(F,1)
 end
 
 % quiver3(V(F(:,1),1), V(F(:,2),2), V(F(:,3),3), N(:,1), N(:,2), N(:,3));
+	
 
 end

@@ -24,8 +24,8 @@ if exist(Name, 'file')
 end
 fprintf('Building correspondene...\n');
 
-[TS NS VS4 FS4]= v4_normal(VS, FS);
-[TT NT VT4 FT4] = v4_normal(VT, FT);
+[TS, NS, VS4, FS4]= v4_normal(VS, FS);
+[TT, NT, VT4, FT4] = v4_normal(VT, FT);
 
 VS_C = zeros(size(FS,1),3);
 VT_C = zeros(size(FT,1),3);
@@ -70,7 +70,7 @@ for i=1:size(FS,1)
     end
 end
 corres2 = corres2(:, 1:templength);
-
+fprintf('\n');
 reverseStr = [];
 fprintf('Target to Source correspondence..\n');
 
@@ -98,7 +98,7 @@ for i=1:size(FT,1)
     temp = unique(tempcorres(i,:));
     corres{i} = temp(temp>0);
 end
-
+save(Name, 'corres');
 end
 
 

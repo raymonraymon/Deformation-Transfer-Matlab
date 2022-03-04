@@ -80,7 +80,7 @@ while(1)
 end
 hold off;
 
-Marker = [S_ind T_ind];
+Marker = [unique(S_ind,'stable') unique(T_ind,'stable')];
 save(FName, 'Marker', 'S_ind', 'T_ind');
 close all;
 

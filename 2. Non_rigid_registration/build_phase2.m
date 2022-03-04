@@ -1,4 +1,4 @@
-function [ M_P2 C_P2 ] = build_phase2( VS, FS, NS, VT, VTN, marker, wc )
+function [ M_P2, C_P2 ] = build_phase2( VS, FS, NS, VT, VTN, marker, wc )
 %Build phase 2 sparse matrix M_P2 ( Closest Valid Point term) with # of
 %source vertices (nS), triangles (mS), target vertices(nT)
 %   Input
